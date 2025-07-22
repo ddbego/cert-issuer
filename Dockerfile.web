@@ -45,8 +45,10 @@ COPY . /cert-issuer
 COPY conf_regtest.ini /etc/cert-issuer/conf.ini
 RUN mkdir -p /etc/cert-issuer/
 WORKDIR /cert-issuer
+RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install cert-issuer
 RUN pip3 install -r requirements.txt
+RUN pip3 install -r ethereum_requirements.txt
 RUN sed -i.bak "s/<issuing-address>/$ISSUER/g" /etc/cert-issuer/conf.ini
 
 # configure wsgi
