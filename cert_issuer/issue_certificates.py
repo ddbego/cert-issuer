@@ -28,6 +28,9 @@ def main(app_config):
     if chain.is_ethereum_type():
         from cert_issuer.blockchain_handlers import ethereum
         certificate_batch_handler, transaction_handler, connector = ethereum.instantiate_blockchain_handlers(app_config)
+    elif chain.is_layer2_type():
+        from cert_issuer.blockchain_handlers import layer2
+        certificate_batch_handler, transaction_handler, connector = layer2.instantiate_blockchain_handlers(app_config)
     else:
         from cert_issuer.blockchain_handlers import bitcoin
         certificate_batch_handler, transaction_handler, connector = bitcoin.instantiate_blockchain_handlers(app_config)

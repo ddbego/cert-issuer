@@ -117,6 +117,18 @@ def tx_to_blink(chain, tx_id):
         blink += 'eth:sepolia:'
     elif chain == Chain.ethereum_mainnet:
         blink += 'eth:mainnet:'
+    elif chain == Chain.polygon_mainnet:
+        blink += 'polygon:mainnet:'
+    elif chain == Chain.polygon_mumbai:
+        blink += 'polygon:mumbai:'
+    elif chain == Chain.arbitrum_one:
+        blink += 'arbitrum:mainnet:'
+    elif chain == Chain.arbitrum_goerli:
+        blink += 'arbitrum:goerli:'
+    elif chain == Chain.optimism_mainnet:
+        blink += 'optimism:mainnet:'
+    elif chain == Chain.optimism_goerli:
+        blink += 'optimism:goerli:'
     elif chain == Chain.mockchain:
         blink += 'mocknet:'
     else:

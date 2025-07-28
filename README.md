@@ -5,7 +5,7 @@
 # cert-issuer
 
 The cert-issuer project issues blockchain certificates by creating a transaction from the issuing institution to the
-recipient on the Bitcoin or Ethereum blockchains. That transaction includes the hash of the certificate itself.
+recipient on the Bitcoin, Ethereum, or Layer2 blockchains. That transaction includes the hash of the certificate itself.
 
 Blockcerts v3 is released. This new version of the standard leverages the [W3C Verifiable Credentials specification](https://www.w3.org/TR/vc-data-model/), and documents are signed with [MerkleProof2019 LD signature](https://w3c-ccg.github.io/lds-merkle-proof-2019/). Use of [DIDs (Decentralized Identifiers)](https://www.w3.org/TR/did-core/) is also possible to provide more cryptographic proof of the ownership of the issuing address. See [section](#working-with-dids) down below
 
@@ -236,6 +236,40 @@ The Issuer Bitcoin address and timestamp from the transaction are also critical 
 The Quick Start assumed you are issuing certificates in Bitcoin regtest mode, which doesn't actually write to a public blockchain. To actually write your transaction, you need to run in testnet (with test coins -- not real money) or mainnet (real money).
 
 We recommend starting in testnet before mainnet.
+
+## Layer2 Networks Support
+
+Cert-issuer now supports Layer2 scaling solutions for lower transaction costs and faster processing:
+
+### Supported Layer2 Networks:
+- **Polygon (MATIC)**: Mainnet and Mumbai testnet
+- **Arbitrum One**: Mainnet and Goerli testnet  
+- **Optimism**: Mainnet and Goerli testnet
+
+### Benefits of Layer2:
+- **Lower Gas Fees**: Significantly reduced transaction costs compared to Ethereum mainnet
+- **Faster Transactions**: Quicker block times and confirmations
+- **Ethereum Compatibility**: Uses the same EVM and tooling as Ethereum
+- **Security**: Inherits security from Ethereum through various mechanisms
+
+### Configuration:
+Use the `conf_layer2.ini` file as a template for Layer2 network configuration. You'll need:
+- API tokens from respective block explorers (Polygonscan, Arbiscan, Optimistic Etherscan)
+- RPC URLs for the networks (optional, fallback to block explorer APIs)
+- Appropriate gas settings for each network
+
+Example for Polygon:
+```ini
+chain=polygon_mainnet
+polygonscan_api_token=<your-api-token>
+polygon_rpc_url=https://polygon-rpc.com
+```
+
+### Testing Layer2 Support
+To test the Layer2 functionality:
+```bash
+python test_layer2.py
+```
 
 By default, cert-issuer does not assume you have a bitcoin/ethereum node running locally, and it uses APIs to look up and broadcast transactions. There is API support for both testnet and mainnet chains.
 

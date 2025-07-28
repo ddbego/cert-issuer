@@ -50,7 +50,8 @@ def add_arguments(p):
     p.add_argument('--max_retry', default=10, type=int, help='Maximum attempts to retry transaction on failure', env_var='MAX_RETRY')
     p.add_argument('--chain', default='bitcoin_regtest',
                    help=('Which chain to use. Default is bitcoin_regtest (which is how the docker container is configured). Other options are '
-                         'bitcoin_testnet bitcoin_mainnet, mockchain, ethereum_mainnet, ethereum_ropsten, ethereum_goerli, ethereum_sepolia'), env_var='CHAIN')
+                         'bitcoin_testnet bitcoin_mainnet, mockchain, ethereum_mainnet, ethereum_ropsten, ethereum_goerli, ethereum_sepolia, '
+                         'polygon_mainnet, polygon_mumbai, arbitrum_one, arbitrum_goerli, optimism_mainnet, optimism_goerli'), env_var='CHAIN')
 
     p.add_argument('--safe_mode', dest='safe_mode', default=True, action='store_true',
                    help='Used to make sure your private key is not plugged in with the wifi.', env_var='SAFE_MODE')
@@ -94,6 +95,35 @@ def add_arguments(p):
     p.add_argument('--sepolia_rpc_url', default=None, type=str,
                    help='The URL of an Ethereum Sepolia RPC node - useful in the case of third-party full node vendors.',
                    env_var='SEPOLIA_RPC_URL')
+    
+    # Layer2 arguments
+    p.add_argument('--polygon_rpc_url', default=None, type=str,
+                   help='The URL of a Polygon mainnet RPC node.',
+                   env_var='POLYGON_RPC_URL')
+    p.add_argument('--mumbai_rpc_url', default=None, type=str,
+                   help='The URL of a Polygon Mumbai testnet RPC node.',
+                   env_var='MUMBAI_RPC_URL')
+    p.add_argument('--arbitrum_rpc_url', default=None, type=str,
+                   help='The URL of an Arbitrum One RPC node.',
+                   env_var='ARBITRUM_RPC_URL')
+    p.add_argument('--arbitrum_goerli_rpc_url', default=None, type=str,
+                   help='The URL of an Arbitrum Goerli testnet RPC node.',
+                   env_var='ARBITRUM_GOERLI_RPC_URL')
+    p.add_argument('--optimism_rpc_url', default=None, type=str,
+                   help='The URL of an Optimism mainnet RPC node.',
+                   env_var='OPTIMISM_RPC_URL')
+    p.add_argument('--optimism_goerli_rpc_url', default=None, type=str,
+                   help='The URL of an Optimism Goerli testnet RPC node.',
+                   env_var='OPTIMISM_GOERLI_RPC_URL')
+    p.add_argument('--polygonscan_api_token', default=None, type=str,
+                   help='The API token for Polygonscan.',
+                   env_var='POLYGONSCAN_API_TOKEN')
+    p.add_argument('--arbiscan_api_token', default=None, type=str,
+                   help='The API token for Arbiscan.',
+                   env_var='ARBISCAN_API_TOKEN')
+    p.add_argument('--optimistic_etherscan_api_token', default=None, type=str,
+                   help='The API token for Optimistic Etherscan.',
+                   env_var='OPTIMISTIC_ETHERSCAN_API_TOKEN')
 
     p.add_argument('--blockcypher_api_token', default=None, type=str,
                    help='the API token of the blockcypher broadcaster', env_var='BLOCKCYPHER_API_TOKEN')
