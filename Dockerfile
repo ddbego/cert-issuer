@@ -39,7 +39,7 @@ RUN apk add --update \
     && rm -rf /var/cache/apk/* \
     && rm -rf /root/.cache
 
+# ENTRYPOINT bitcoind -daemon && bash
+# Activate virtual environment and start services
 
-ENTRYPOINT bitcoind -daemon && bash
-
-
+ENTRYPOINT ["/bin/bash", "-c", "bitcoind -regtest -daemon && sleep 10 && source .venv/bin/activate && exec bash"]
